@@ -1,0 +1,86 @@
+\mode<presentation>
+
+%\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+% 定义东财蓝和东财红
+\xdefinecolor{dufe@blue}{RGB}{0, 51, 102} % 东财蓝
+\xdefinecolor{dufe@red}{RGB}{153, 0, 0} % 东财红
+
+% 背景图选项
+\DeclareOption{blue}{\xdefinecolor{dufe@blue}{RGB}{0, 51, 102}
+\setbeamertemplate{background}{
+    \includegraphics[width=1\paperwidth,height=\paperheight]{Dufebg.pdf}
+}} % 选项为东财蓝
+\DeclareOption{red}{\xdefinecolor{dufe@red}{RGB}{153, 0, 0}
+\setbeamertemplate{background}{
+    \includegraphics[width=1\paperwidth,height=\paperheight]{Dufebg.pdf}
+}} % 选项为东财红
+\ProcessOptions\relax
+\xdefinecolor{dufe@blue}{RGB}{0,51,102}
+
+% 页脚设置
+\useoutertheme[footline=authorinstitutetitle,subsection=false]{smoothbars}
+\makeatletter % [添加当前页码/总页数]
+\newcommand{\frameofframes}{/}
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
+% 页脚：作者 | 日期 | 标题 | 页码
+\defbeamertemplate*{footline}{dufe_beamer}{%
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.125ex,center]{title in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortauthor
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1.125ex,center]{title in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortdate
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.435\paperwidth,ht=2.5ex,dp=1.125ex,center]{author in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=0.065\paperwidth,ht=2.5ex,dp=1.125ex,right]{author in head/foot}%
+			\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+\makeatother
+
+% 内部和字体主题
+\useinnertheme{circles}
+\usefonttheme{professionalfonts}
+
+% 标题和色块颜色设置
+\setbeamercolor{footline}{bg=dufe@blue}
+\setbeamercolor{frametitle}{bg=dufe@blue,fg=white}
+\setbeamercolor{title}{bg=dufe@blue}
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{caption}[numbered]
+
+\setbeamercolor{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor{palette secondary}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
+\setbeamercolor{palette quaternary}{fg=white,bg=structure.fg!50!black}
+\setbeamercolor{titlelike}{parent=palette primary}
+
+% 色块样式调整
+\setbeamercolor{block title}{bg=dufe@blue,fg=white}
+\setbeamercolor{block title alerted}{use = alerted text, fg = white, bg = dufe@red}
+\setbeamercolor{block title example}{use={normal text,example text},bg=white,fg=dufe@blue}
+\setbeamercolor{fine separation line}{}
+\setbeamercolor{item projected}{fg=white}
+\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{section in sidebar}{fg=brown}
+\setbeamercolor{section in sidebar shaded}{fg=grey}
+\setbeamercolor{sidebar}{bg=dufe@blue}
+\setbeamercolor{structure}{fg=dufe@blue}
+
+% 目录调整
+\AtBeginSection[]{
+	\begin{frame}
+		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=hide,subsubsectionstyle=hide]
+	\end{frame}
+}
+\mode
+<all>
