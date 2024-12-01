@@ -6,10 +6,11 @@
 \usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
 \usepackage{graphicx,pstricks,listings,stackengine}
 \usepackage{caption, subfigure}
-\ProcessOptionsBeamer
-% \usepackage[blue]{DufeBeamer}	%厦大蓝
-% \usepackage{DufeBeamer}	%厦大蓝主题色，但无背景
-\usepackage[red]{DufeBeamer}%嘉庚红
+\usepackage{pgfplots}
+\usefonttheme{serif}  %衬线字体
+\usepackage[blue]{DufeBeamer}	%东财蓝
+% \usepackage{DufeBeamer}   %东财蓝主题色，但无背景
+% \usepackage[red]{DufeBeamer}  %东财红
 
 \author[Lyu Zhenghe]{Lyu Zhenghe}
 \title{东北财经大学\textrm{Beamer}模板}
@@ -32,8 +33,9 @@
     rulesepcolor=\color{red!20!green!20!blue!20},
     frame=shadowbox
 }
+% 命令颜色
 
-
+\pgfplotsset{compat=1.18}
 \begin{document}
 \begin{frame}
     \titlepage
@@ -78,8 +80,7 @@
         \item 大家都会\LaTeX{}，好多学校都有自己的\textrm{Beamer}主题
         \item 中文支持请选择 Xe\LaTeX{} 编译选项
         \item 请使用bibtex编译引用
-        \item GitHub项目地址为 \href{https://github.com/iceduu/xmu-beamer}{https://github.com/iceduu/xmu-beamer}，如果有bug或者feature request可以去里面提issue
-        \item 本模板已发布至overleaf，地址为 \href{https://www.overleaf.com/latex/templates/xmu-beamer-template/zzrksvwjnkzn}{https://www.overleaf.com/latex/templates/xmu-beamer-template/zzrksvwjnkzn}
+        \item GitHub项目地址为 \href{https://github.com/Eriksas/DufeBeamer}{https://github.com/Eriksas/DufeBeamer}，如果有bug或者feature request可以去里面提issue
     \end{itemize}
 \end{frame}
 
@@ -89,39 +90,73 @@
 \begin{frame}
     \begin{itemize}
         \item 本模板参考自 \url{https://cn.overleaf.com/latex/templates/sudaiai-beamer-template/dzrthpbrzppc}\cite{origin}
+        \item \url{https://github.com/ustctug/ustcbeamer/tree/master}\cite{origin1}
+        \item \url{https://www.overleaf.com/latex/templates/sha-men-da-xue-beamer/sckzzdghzxbh}\cite{origin2}
     \end{itemize}
 \end{frame}
 
 
 \section{改动说明}
 
-%\begin{frame}{改动说明}
-%    \begin{itemize}
-%        \item 调整至厦门大学厦大蓝以及嘉庚红两种主题颜色
-%        \item 对alertblock的颜色进行了更改
-%        \item 对footline进行了调整
-%        \item 更多该模板的功能可以参考 \url{https://www.latexstudio.net/archives/4051.html}
-%        \item 下面列举出了一些Beamer的用法，部分节选自 \url{https://tuna.moe/event/2018/latex/}
-%    \end{itemize}
-%\end{frame}
-
 \begin{frame}{最新改动说明}
     \begin{itemize}
-        \item 主题颜色可以通过options选项进行控制
-        \item 字体调整为默认字体
+        \item 添加了两种主题配色
+        \item 添加图例和图例解释说明模板
+        \item 学生添加表格模板
     \end{itemize}
 \end{frame}
+
+\begin{frame}
+    \frametitle{数据可视化}
+    \begin{columns}
+        % 图表部分
+        \begin{column}{0.7\textwidth}
+            \begin{tikzpicture}
+                \begin{axis}[title=样例图]
+                    \addplot {x^2};
+                \end{axis}
+            \end{tikzpicture}
+        \end{column}
+
+        % 解释部分
+        \begin{column}{0.3\textwidth}
+            \begin{block}{图表解释}
+                该图展示了 $x^2$ 函数的图形，其中横轴表示自变量 $x$，纵轴表示因变量 $x^2$。随着 $x$ 的增大，$x^2$ 的值也会增大，显示出一个上升的抛物线形状。
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
 \section{使用说明}
 \begin{frame}{主题色选择}
 	\begin{itemize}
-		\item 本模板共包含两个主题色，分别为厦大蓝和嘉庚红。
-		\item 厦大蓝使用\textbackslash usepackage[blue]\{XMUBeamer\}
-		\item 嘉庚红使用\textbackslash usepackage[red]\{XMUBeamer\}
-		\item 厦大蓝主题色，无楼群背景使用\textbackslash usepackage\{XMUBeamer\}
+		\item 本模板共包含两个主题色，分别为东财蓝和东财红。
+		\item 东财蓝使用\textbackslash usepackage[blue]\{DufeBeamer\}
+		\item 东财红使用\textbackslash usepackage[red]\{DufeBeamer\}
+		\item 东财蓝主题色，无楼群背景使用\textbackslash usepackage\{DufeBeamer\}
 	\end{itemize}
 	
 	
 \end{frame}
+
+\begin{frame}{表格示例}
+    \begin{table}[htbp]
+        \centering
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            姓名 & 年龄 & 城市 & 职业 \\
+            \hline
+            张三 & 25 & 北京 & 工程师 \\
+            \hline
+            李四 & 30 & 上海 & 医生 \\
+            \hline
+            王五 & 22 & 广州 & 学生 \\
+            \hline
+        \end{tabular}
+        \caption{人员信息表}
+    \end{table}
+\end{frame}
+
 
 \begin{frame}{列表举例}
 	\begin{block}{\textbf{无序列表}}
@@ -216,7 +251,7 @@
         %\hspace{2cm}
         \begin{figure}[h]
             \centering
-            \includegraphics[height=.4\textheight]{Dufe2.pdf}
+            \includegraphics[height=.6\textheight]{portfolio1.pdf}
         \end{figure}
     \end{minipage}
 \end{frame}
@@ -366,7 +401,7 @@ $V = \frac{4}{3}\pi r^3$
 \section{参考文献}
 
 \begin{frame}[allowframebreaks]
-    \bibliography{slides}
+    \bibliography{citation}
     \bibliographystyle{alpha}
     % 如果参考文献太多的话，可以像下面这样调整字体：
     % \tiny\bibliographystyle{alpha}
